@@ -1,0 +1,16 @@
+<h1>My wallet</h1>
+
+<h3>Search Stocks</h3>
+<div class="input-group mb-3">
+  <%= form_tag search_stock_path, method: :get do %>
+    <div class="input-group mb-3">
+      <%= text_field_tag :stock, params[:stock], placeholde: "Stock ticker", class: "form-control form-control-lg" %>
+      <div class="input-group-append">
+        <%= button_tag type: :submit, class: "input-group-text btn btn-primary" do %>
+          <span class="fa-icon"><%= 'Search' %></span>
+        <% end %>
+      </div>
+    </div>
+  <% end %>
+<div>
+<%= render 'users/result' %>
