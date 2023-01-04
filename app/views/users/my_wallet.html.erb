@@ -2,7 +2,7 @@
 
 <h3>Search Stocks</h3>
 <div class="input-group mb-3">
-  <%= form_tag search_stock_path, method: :get do %>
+  <%= form_tag search_stock_path, remote: true, method: :get do %>
     <div class="input-group mb-3">
       <%= text_field_tag :stock, params[:stock], placeholde: "Stock ticker", class: "form-control form-control-lg" %>
       <div class="input-group-append">
@@ -13,4 +13,5 @@
     </div>
   <% end %>
 <div>
-<%= render 'users/result' %>
+<div id="results">
+</div>
