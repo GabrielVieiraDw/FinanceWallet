@@ -1,4 +1,4 @@
-<div class="card border-dark mb-3" style="max-width: 18rem;">
+<div class="card border-dark mb-3 " style="max-width: 18rem;">
   <%= render 'layouts/messages' %>
 </div>
 <% if @stock %>
@@ -7,6 +7,18 @@
     <div class="card-body text-dark">
       <h5 class="card-title"><strong>Name: </strong> <%= @stock.name %></h5>
       <p class="card-text"><strong>Price: </strong> <%= @stock.price %></p>
+      <% if current_user.stock_tracker_enabled?(@stock.ticker) %>
+        <%= link_to 'Add to my wallet', user_stocks_path(user: current_user, ticker: @stock.ticker), class: "btn btn-success", method: :post %>
+      <% else %>
+        <span class="badge">
+          You are already tracking
+          <% if !current_user.under_stock_limit? %>
+            10 stocks
+          <% elsif current_user.stocks_tracked?(@stock.ticker) %>
+            this stock
+          <% end %>
+        </span>
+      <% end %>
     </div>
   </div>
 <% end %>

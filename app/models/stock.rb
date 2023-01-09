@@ -13,4 +13,8 @@ class Stock < ApplicationRecord
       return nil
     end
   end
+
+  def self.check_stock(ticker)
+    where(ticker: ticker).first
+  end
 end
