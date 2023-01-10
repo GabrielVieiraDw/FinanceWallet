@@ -21,4 +21,12 @@ class StocksController < ApplicationController
     end
   end
 
+  def destroy
+    stock = Stock.find(params[:id])
+    user_stock = UserStock.where(user_id: 1, stock_id: stock).first
+    user_stock.destroy
+    flash[:notice] = "#{sotck.ticker} successfully removed"
+    redirect_to my_wallet_path
+  end  
+
 end
