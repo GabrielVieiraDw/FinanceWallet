@@ -1,0 +1,21 @@
+<div class="card border-dark mb-3 " style="max-width: 18rem;">
+  <%= render 'layouts/messages' %>
+</div>
+<% if @friends %>
+  <table class="table table-striped table-dark table-hover">
+    <tbody>
+      <% @friends.each do |friend| %>
+        <tr>
+          <td><strong>Name: </strong> <%= friend.full_name %></td>
+          <td><strong>Email: </strong> <%= friend.email %></td>
+          <td><%= link_to 'View profile', user_path(friend),  class: "btn btn-success", method: :post %>
+          <% if current_user.not_friends_with?(friend.id)%>
+            <%= link_to 'Follow', friendships_path(friend: friend),  class: "btn btn-success", method: :post %></td>
+          <% else %>
+            <span class="badge badge-secondary"> Following
+          <% end %>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% end %>
